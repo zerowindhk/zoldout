@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node server/index.js",
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server/index.js",
+    "start": "node  server/index.js",
+    "dev": "nodemon  server/index.js",
     "build": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +16,9 @@
     "node": "^16.15.1"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "google-spreadsheet": "^3.3.0"
   }
 }
