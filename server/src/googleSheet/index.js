@@ -2,14 +2,14 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
 
-const authGoogleSheet = async (doc) => {
+const auth = async (doc) => {
   await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     private_key: process.env.GOOGLE_PRIVATE_KEY,
   });
 
   await doc.loadInfo(); // loads document properties and worksheets
-  console.log(doc.title);
+  console.log('doc is ready', doc.title);
 };
 
 const getDistinctResourcesList = (sheet, likeResourceName) => {
@@ -121,7 +121,7 @@ const findResource = async (resourceName) => {
 const findLikeResource = async (likeResourceName) => {
   const sheet = doc.sheetsByIndex[0];
   await sheet.loadCells(`A1:B${sheet.rowCount}`);
-  const result = getDistinctResourcesList(sheet, likeResourceName);
+  const result = getDistinctResourcesList(sheet, likeResourceName).sort();
   return result;
 };
 
@@ -173,11 +173,11 @@ const findWeaponResource = async (weaponName) => {
 const findLikeWeapon = async (likeWeaponName) => {
   const sheet = doc.sheetsByIndex[1];
   await sheet.loadCells(`A1:B${sheet.rowCount}`);
-  const result = getDistinctWeaponList(sheet, likeWeaponName);
+  const result = getDistinctWeaponList(sheet, likeWeaponName).sort();
   return result;
 };
 
-authGoogleSheet(doc);
+auth(doc);
 
 module.exports = {
   findResource,
