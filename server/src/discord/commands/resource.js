@@ -16,6 +16,7 @@ module.exports = {
         .setRequired(false)
     ),
   async execute(interaction) {
+    const { options } = interaction;
     await interaction.deferReply({
       ephemeral: options.getBoolean('private') || false,
     });
