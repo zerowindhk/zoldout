@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Content, Home } from './pages';
 import './App.css';
+import Paperbase from './template/PaperBase';
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api')
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
+  const routes = (
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/resource' element={<Home />} />
+      <Route path='/weapon' element={<Home />} />
+      <Route path='/calculator' element={<Home />} />
+      <Route path='/content' element={<Content />} />
+    </Routes>
+  );
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>{!data ? 'Loading...' : data}</p>
-      </header>
-    </div>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Paperbase>{routes}</Paperbase>
+    </BrowserRouter>
   );
 }
 
