@@ -23,6 +23,7 @@ module.exports = {
       ephemeral: options.getBoolean('private') || false,
     });
     const list = await getAllInformationList();
+    console.log('getAllInformationList', list);
     const count = list.length;
     if (count) {
       const rows = [];
@@ -63,14 +64,14 @@ module.exports = {
         console.log('choice', name);
         const result = await getInformation(name);
         const stages = result.stages.map((stage, index) => ({
-          name: `${index}/${result.stages.length}`,
+          name: `${index + 1}/${result.stages.length}`,
           value: stage,
           inline: true,
         }));
         const embed = new MessageEmbed({
           title: name,
           color: '#0099ff',
-          description: `獎勵: ${result.reward}`,
+          description: `獎勵: ${result.reward}\n收集關卡如下：`,
           fields: stages,
         });
         await i.update({

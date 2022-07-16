@@ -189,7 +189,7 @@ const getAllInformationList = async () => {
     const cellValue = cellInfo.value;
     array.push(cellValue);
   }
-  return new Set(array);
+  return [...new Set(array)];
 };
 
 const getInformation = async (informationName) => {
@@ -203,7 +203,7 @@ const getInformation = async (informationName) => {
     if (cellValue === informationName) {
       const stage = sheet.getCell(i, 1).value;
       stages.push(stage);
-      reward = sheet.getCell(i, 2).value;
+      reward = sheet.getCell(i, 2).value || '';
     }
   }
   return {
