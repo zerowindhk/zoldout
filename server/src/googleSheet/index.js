@@ -120,6 +120,7 @@ const findResource = async (resourceName) => {
 
 const findLikeResource = async (likeResourceName) => {
   const sheet = doc.sheetsByIndex[0];
+  console.log(sheet.title);
   await sheet.loadCells(`A1:B${sheet.rowCount}`);
   const result = getDistinctResourcesList(sheet, likeResourceName).sort();
   return result;
@@ -172,6 +173,7 @@ const findWeaponResource = async (weaponName) => {
 
 const findLikeWeapon = async (likeWeaponName) => {
   const sheet = doc.sheetsByIndex[1];
+  console.log(sheet.title);
   await sheet.loadCells(`A1:B${sheet.rowCount}`);
   const result = getDistinctWeaponList(sheet, likeWeaponName).sort();
   return result;
@@ -179,8 +181,8 @@ const findLikeWeapon = async (likeWeaponName) => {
 
 const getAllInformationList = async () => {
   const sheet = doc.sheetsByIndex[3];
+  console.log(sheet.title);
   await sheet.loadCells(`A1:C${sheet.rowCount}`);
-
   const array = [];
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellInfo = sheet.getCell(i, 0);
