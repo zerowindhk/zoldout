@@ -20,7 +20,7 @@ module.exports = {
   async execute(interaction) {
     const { options } = interaction;
     await interaction.deferReply({
-      ephemeral: options.getBoolean('private') || false,
+      ephemeral: options.getBoolean('private') ?? true,
     });
     const list = await getAllInformationList();
     console.log('getAllInformationList', list);
