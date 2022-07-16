@@ -10,7 +10,7 @@ const {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('information')
-    .setDescription('顯示資料庫收集名稱')
+    .setDescription('尋找資料庫收集物')
     .addBooleanOption((option) =>
       option
         .setName('private')
