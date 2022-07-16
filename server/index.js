@@ -13,9 +13,8 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Handle GET requests to /api route
-app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from server!' });
-});
+const c4cat = require('./src/c4cat');
+app.use('/api/c4cat', c4cat);
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {

@@ -177,6 +177,40 @@ const findLikeWeapon = async (likeWeaponName) => {
   return result;
 };
 
+const getAllInformationList = async () => {
+  const sheet = doc.sheetsByIndex[3];
+  await sheet.loadCells(`A1:C${sheet.rowCount}`);
+
+  const array = [];
+  for (let i = 1; i < sheet.rowCount; i++) {
+    const cellInfo = sheet.getCell(i, 0);
+    const cellValue = cellInfo.value;
+    array.push(cellValue);
+  }
+  return new Set(array);
+};
+
+const getInformation = async (informationName) => {
+  const sheet = doc.sheetsByIndex[3];
+  await sheet.loadCells(`A1:C${sheet.rowCount}`);
+  const stages = [];
+  let reward = '';
+  for (let i = 1; i < sheet.rowCount; i++) {
+    const cellInfo = sheet.getCell(i, 0);
+    const cellValue = cellInfo.value;
+    if (cellValue === informationName) {
+      const stage = sheet.getCell(i, 1).value;
+      stages.push(stage);
+      reward = sheet.getCell(i, 2).value;
+    }
+  }
+  return {
+    name: informationName,
+    reward,
+    stages,
+  };
+};
+
 auth(doc);
 
 module.exports = {
@@ -184,4 +218,6 @@ module.exports = {
   findLikeResource,
   findWeaponResource,
   findLikeWeapon,
+  getAllInformationList,
+  getInformation,
 };
