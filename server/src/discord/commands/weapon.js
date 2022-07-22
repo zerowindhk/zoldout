@@ -11,6 +11,12 @@ module.exports = {
     )
     .addBooleanOption((option) =>
       option
+        .setName('weapon_first')
+        .setDescription('選擇優先是擁有武器素材關卡')
+        .setRequired(false)
+    )
+    .addBooleanOption((option) =>
+      option
         .setName('private')
         .setDescription('如不想讓人知道自己在查甚麼就Yes')
         .setRequired(false)
@@ -18,9 +24,10 @@ module.exports = {
   async execute(interaction) {
     const { options } = interaction;
     await interaction.deferReply({
-      ephemeral: options.getBoolean('private') || false,
+      ephemeral: options.getBoolean('private') ?? false,
     });
     const likeWeaponName = options.getString('name');
+    const weaponFirst = options.getBoolean('weapon_first') ?? false;
     const weaponNameList = await findLikeWeapon(likeWeaponName);
     const weaponCount = weaponNameList.length;
     if (weaponCount) {
@@ -60,7 +67,7 @@ module.exports = {
       collector.on('collect', async (i) => {
         const { customId: weaponName } = i;
         console.log('choice', weaponName);
-        const weaponResult = await findWeaponResource(weaponName);
+        const weaponResult = await findWeaponResource(weaponName, weaponFirst);
         const stagesToString = weaponResult.stages.join(' / ');
         const resourcesToField = weaponResult.resources.map(
           (resourceResult) => ({
