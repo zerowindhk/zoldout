@@ -42,7 +42,12 @@ const getDistinctWeaponList = (sheet, likeWeaponName) => {
   return distinctArray;
 };
 
-const loopExactFind = (sheet, resourceName, weaponName = null) => {
+const loopExactFind = (
+  sheet,
+  resourceName,
+  weaponName = null,
+  weaponFirst = false
+) => {
   let rowNo = 0;
   let amount = 0;
   let hasWeaponRowNo = 0;
@@ -77,7 +82,11 @@ const loopExactFind = (sheet, resourceName, weaponName = null) => {
       continue; //not filled yet
     }
   }
-  rowNo = weaponName && hasWeaponAmount === amount ? hasWeaponRowNo : rowNo;
+  rowNo =
+    weaponName && (hasWeaponAmount === amount || weaponFirst)
+      ? hasWeaponRowNo
+      : rowNo;
+  amount = weaponFirst && hasWeaponAmount != 0 ? hasWeaponAmount : amount;
   const stage = sheet.getCell(rowNo, 0).value;
   const findWithWeapon = weaponName
     ? sheet.getCell(rowNo, 2).value === weaponName
@@ -126,7 +135,7 @@ const findLikeResource = async (likeResourceName) => {
   return result;
 };
 
-const findWeaponResource = async (weaponName) => {
+const findWeaponResource = async (weaponName, weaponFirst = false) => {
   // console.log(weaponName);
   const weaponSheet = doc.sheetsByIndex[1];
   await weaponSheet.loadCells(`A1:C${weaponSheet.rowCount}`);
@@ -161,7 +170,12 @@ const findWeaponResource = async (weaponName) => {
   const resourceSheet = doc.sheetsByIndex[0];
   await resourceSheet.loadCells(`A1:C${resourceSheet.rowCount}`);
   weaponObject.resources.forEach((element) => {
-    const item = loopExactFind(resourceSheet, element.resourceName, weaponName);
+    const item = loopExactFind(
+      resourceSheet,
+      element.resourceName,
+      weaponName,
+      weaponFirst
+    );
     element.stage = item.stage;
     element.amount = item.amount;
     element.findWithWeapon = item.findWithWeapon;

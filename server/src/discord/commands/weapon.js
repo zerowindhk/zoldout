@@ -14,6 +14,12 @@ module.exports = {
         .setName('private')
         .setDescription('如不想讓人知道自己在查甚麼就Yes')
         .setRequired(false)
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName('weaponFirst')
+        .setDescription('素材以有需求武器為先')
+        .setRequired(false)
     ),
   async execute(interaction) {
     const { options } = interaction;
@@ -60,7 +66,7 @@ module.exports = {
       collector.on('collect', async (i) => {
         const { customId: weaponName } = i;
         console.log('choice', weaponName);
-        const weaponResult = await findWeaponResource(weaponName);
+        const weaponResult = await findWeaponResource(weaponName, weaponFirst);
         const stagesToString = weaponResult.stages.join(' / ');
         const resourcesToField = weaponResult.resources.map(
           (resourceResult) => ({
