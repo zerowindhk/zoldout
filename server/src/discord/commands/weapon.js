@@ -17,7 +17,7 @@ module.exports = {
     )
     .addBooleanOption((option) =>
       option
-        .setName('weaponFirst')
+        .setName('weapon_first')
         .setDescription('素材以有需求武器為先')
         .setRequired(false)
     ),
