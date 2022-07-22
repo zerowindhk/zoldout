@@ -5,7 +5,7 @@ const wait = require('node:timers/promises').setTimeout;
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('test')
-    .setDescription('提供資料來源的 Google Sheet'),
+    .setDescription('just for test'),
   async execute(interaction) {
     console.log(interaction);
     await interaction.reply('Pong!');
