@@ -23,7 +23,7 @@ module.exports = {
       ephemeral: options.getBoolean('private') ?? true,
     });
     const list = await getAllInformationList();
-    // console.log('getAllInformationList', list);
+    console.log('getAllInformationList', list);
     const count = list.length;
     if (count) {
       const rows = [];
