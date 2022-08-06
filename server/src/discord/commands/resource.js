@@ -12,7 +12,7 @@ module.exports = {
     .addBooleanOption((option) =>
       option
         .setName('private')
-        .setDescription('如不想讓人知道自己在查甚麼就Yes')
+        .setDescription('如不想讓人知道自己在查甚麼就True')
         .setRequired(false)
     ),
   async execute(interaction) {
