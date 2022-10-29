@@ -68,13 +68,17 @@ const loopExactFind = (
         const number = element.match(re2);
         if (number) {
           const count = parseInt(number[0]);
+          if (
+            weaponName &&
+            sheet.getCell(i, 2).value === weaponName &&
+            count >= hasWeaponAmount
+          ) {
+            hasWeaponRowNo = i;
+            hasWeaponAmount = count;
+          }
           if (count >= amount) {
             rowNo = i;
             amount = count;
-            if (weaponName && sheet.getCell(i, 2).value === weaponName) {
-              hasWeaponRowNo = i;
-              hasWeaponAmount = count;
-            }
           }
         }
       }
