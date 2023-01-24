@@ -3,9 +3,10 @@ const path = require('node:path');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const dotenv = require('dotenv');
-dotenv.config({ path: '../../../.env' });
+var envPath = path.resolve(__dirname, '../../../.env');
+console.log(envPath);
+dotenv.config({ path: envPath });
 const token = process.env.TOKEN;
-
 const commands = [];
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs

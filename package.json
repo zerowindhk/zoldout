@@ -7,6 +7,7 @@
     "start": "node  server/index.js",
     "dev": "nodemon  server/index.js",
     "build": "cd client && npm ci && npm run build",
+    "commandUpdate": "node server/src/discord/deploy-commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
