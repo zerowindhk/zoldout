@@ -122,7 +122,12 @@ const loopExactFind = (
     weaponName && weaponFirst && hasWeaponAmount > 0 ? hasWeaponAmount : amount;
   const stage = sheet.getCell(rowNo, 0).value;
   const weaponGetFromStage = sheet.getCell(rowNo, weaponIndex).value;
-  console.log('Loop Exact Found', weaponName, weaponGetFromStage);
+  // console.log(
+  //   'Loop Exact Found',
+  //   weaponName,
+  //   weaponGetFromStage,
+  //   weaponName == weaponGetFromStage
+  // );
   const findWithWeapon = weaponName ? weaponGetFromStage === weaponName : false;
   return {
     resourceName,

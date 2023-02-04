@@ -104,22 +104,27 @@ module.exports = {
           weaponFirst
         );
         const stagesToString = weaponResult.stages.join(' / ');
-        const dropWeaponMsg =
-          lang == 'en'
-            ? `Weapon Fragment Drop: ${
-                weaponResult.findWithWeapon ? 'Yes' : 'No'
-              }`
-            : lang == 'jp'
-            ? `武器の欠片を落とす：${
-                weaponResult.findWithWeapon ? 'はい' : 'いいえ'
-              }`
-            : `掉落武器碎片：${weaponResult.findWithWeapon ? '是' : '否'}`;
+
         const resourcesToField = weaponResult.resources.map(
-          (resourceResult) => ({
-            name: resourceResult.resourceName,
-            value: `${resourceResult.amount} @ ${resourceResult.stage}\n${dropWeaponMsg}`,
-            inline: true,
-          })
+          (resourceResult) => {
+            const dropWeaponMsg =
+              lang == 'en'
+                ? `Weapon Fragment Drop: ${
+                    resourceResult.findWithWeapon ? 'Yes' : 'No'
+                  }`
+                : lang == 'jp'
+                ? `武器の欠片を落とす：${
+                    resourceResult.findWithWeapon ? 'はい' : 'いいえ'
+                  }`
+                : `掉落武器碎片：${
+                    resourceResult.findWithWeapon ? '是' : '否'
+                  }`;
+            return {
+              name: resourceResult.resourceName,
+              value: `${resourceResult.amount} @ ${resourceResult.stage}\n${dropWeaponMsg}`,
+              inline: true,
+            };
+          }
         );
         const embed = new MessageEmbed({
           title: weaponName,
