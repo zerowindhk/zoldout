@@ -168,7 +168,7 @@ const findResource = async (resourceName, lang) => {
 
 const findLikeResource = async (likeResourceName, lang) => {
   const sheet = doc.sheetsByIndex[0];
-  // console.log(sheet.title);
+  console.log(sheet.title);
   await sheet.loadCells(`A1:D${sheet.rowCount}`);
   const result = getDistinctResourcesList(sheet, likeResourceName, lang).sort();
   return result;
@@ -229,7 +229,7 @@ const findWeaponResource = async (weaponName, lang, weaponFirst) => {
 
 const findLikeWeapon = async (likeWeaponName, lang) => {
   const sheet = doc.sheetsByIndex[1];
-  // console.log(sheet.title);
+  console.log(sheet.title);
   await sheet.loadCells(`A1:C${sheet.rowCount}`);
   const result = getDistinctWeaponList(sheet, likeWeaponName, lang).sort();
   return result;
@@ -256,7 +256,7 @@ const getStageMax = (sheet, chapterNo) => {
 //library
 const getAllInformationList = async (lang) => {
   const sheet = doc.sheetsByIndex[3];
-  // console.log(sheet.title);
+  console.log(sheet.title);
   await sheet.loadCells(`A1:C${sheet.rowCount}`);
   const array = [];
   const langIndex = lang == 'en' ? 1 : lang == 'jp' ? 2 : 0;
