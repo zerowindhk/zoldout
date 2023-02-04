@@ -9,12 +9,34 @@ const {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('information')
-    .setDescription('尋找資料庫收集物')
+    .setName('library')
+    .setDescription(
+      '尋找資料庫收集物/Find Library Collections/データベース コレクションの検索'
+    )
+    .addStringOption((option) =>
+      option
+        .setName('language')
+        .setDescription('語言/Language/言語')
+        .setRequired(true)
+        .setChoices(
+          {
+            name: '中文',
+            value: 'zh',
+          },
+          {
+            name: 'English',
+            value: 'en',
+          },
+          {
+            name: '日本語',
+            value: 'jp',
+          }
+        )
+    )
     .addBooleanOption((option) =>
       option
         .setName('private')
-        .setDescription('如不想讓人知道自己在查甚麼就True')
+        .setDescription('私密查詢/Private Search/非公開クエリ')
         .setRequired(false)
     ),
   async execute(interaction) {
@@ -22,7 +44,8 @@ module.exports = {
     await interaction.deferReply({
       ephemeral: options.getBoolean('private') ?? true,
     });
-    const list = await getAllInformationList();
+    const lang = options.getString('language');
+    const list = await getAllInformationList(lang);
     // console.log('getAllInformationList', list);
     const count = list.length;
     if (count) {
@@ -48,7 +71,12 @@ module.exports = {
       const embed = new MessageEmbed({
         title: '資料庫',
         color: '#4422FF',
-        description: '請選擇想要查找資料',
+        description:
+          lang == 'en'
+            ? 'Please select what you want to find'
+            : lang == 'jp'
+            ? 'ご覧になりたい情報を選択してください'
+            : '請選擇想要查找資料',
       });
       await interaction.editReply({
         components: rows,
@@ -62,7 +90,7 @@ module.exports = {
       collector.on('collect', async (i) => {
         const { customId: name } = i;
         console.log('choice', name);
-        const result = await getInformation(name);
+        const result = await getInformation(name, lang);
         const stages = result.stages.map((stage, index) => ({
           name: `${index + 1}/${result.stages.length}`,
           value: stage,
@@ -71,7 +99,12 @@ module.exports = {
         const embed = new MessageEmbed({
           title: name,
           color: '#0099ff',
-          description: `獎勵: ${result.reward}\n收集關卡如下：`,
+          description:
+            lang == 'en'
+              ? `Reward: ${result.reward}\nCollection Stages below：`
+              : lang == 'jp'
+              ? `アワード: ${result.reward}\n収集レベルは次のとおりです：`
+              : `獎勵: ${result.reward}\n收集關卡如下：`,
           fields: stages,
         });
         await i.update({
@@ -84,7 +117,8 @@ module.exports = {
       const embed = new MessageEmbed({
         title: 'Bugs',
         color: '#ff0000',
-        description: '沒有此資訊',
+        description:
+          lang == 'en' ? 'Not Found' : lang == 'jp' ? '情報なし' : '沒有此資訊',
       });
       await interaction.editReply({
         embeds: [embed],

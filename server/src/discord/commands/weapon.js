@@ -5,9 +5,34 @@ const { findLikeWeapon, findWeaponResource } = require('../../googleSheet');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('weapon')
-    .setDescription('查找包含名字的武器及其素材最高掉落的關卡')
+    .setDescription(
+      "查找武器素材掉落的關卡/Find the level where the weapon's material drops/武器の素材がドロップするレベルを探す"
+    )
     .addStringOption((option) =>
-      option.setName('name').setDescription('武器名稱').setRequired(true)
+      option
+        .setName('name')
+        .setDescription('武器名稱/Weapon Name/兵器の名前')
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName('language')
+        .setDescription('語言/Language/言語')
+        .setRequired(true)
+        .setChoices(
+          {
+            name: '中文',
+            value: 'zh',
+          },
+          {
+            name: 'English',
+            value: 'en',
+          },
+          {
+            name: '日本語',
+            value: 'jp',
+          }
+        )
     )
     .addBooleanOption((option) =>
       option
@@ -18,7 +43,7 @@ module.exports = {
     .addBooleanOption((option) =>
       option
         .setName('private')
-        .setDescription('如不想讓人知道自己在查甚麼就True')
+        .setDescription('私密查詢/Private Search/非公開クエリ')
         .setRequired(false)
     ),
   async execute(interaction) {
@@ -26,9 +51,10 @@ module.exports = {
     await interaction.deferReply({
       ephemeral: options.getBoolean('private') ?? false,
     });
+    const lang = options.getString('language');
     const likeWeaponName = options.getString('name');
     const weaponFirst = options.getBoolean('weapon_first') ?? false;
-    const weaponNameList = await findLikeWeapon(likeWeaponName);
+    const weaponNameList = await findLikeWeapon(likeWeaponName, lang);
     const weaponCount = weaponNameList.length;
     if (weaponCount) {
       const rows = [];
@@ -53,7 +79,12 @@ module.exports = {
       const embed = new MessageEmbed({
         title: likeWeaponName,
         color: '#33FF99',
-        description: `已查找${weaponCount}項。`,
+        description:
+          lang == 'en'
+            ? `${weaponCount} Found.`
+            : lang == 'jp'
+            ? `${weaponCount}件見つかりました`
+            : `已查找${weaponCount}項。`,
       });
       await interaction.editReply({
         components: rows,
@@ -67,21 +98,38 @@ module.exports = {
       collector.on('collect', async (i) => {
         const { customId: weaponName } = i;
         console.log('choice', weaponName);
-        const weaponResult = await findWeaponResource(weaponName, weaponFirst);
+        const weaponResult = await findWeaponResource(
+          weaponName,
+          lang,
+          weaponFirst
+        );
         const stagesToString = weaponResult.stages.join(' / ');
+        const dropWeaponMsg =
+          lang == 'en'
+            ? `Weapon Fragment Drop: ${
+                weaponResult.findWithWeapon ? 'Yes' : 'No'
+              }`
+            : lang == 'jp'
+            ? `武器の欠片を落とす：${
+                weaponResult.findWithWeapon ? 'はい' : 'いいえ'
+              }`
+            : `掉落武器碎片：${weaponResult.findWithWeapon ? '是' : '否'}`;
         const resourcesToField = weaponResult.resources.map(
           (resourceResult) => ({
             name: resourceResult.resourceName,
-            value: `${resourceResult.amount} @ ${
-              resourceResult.stage
-            }\n掉落武器碎片：${resourceResult.findWithWeapon ? '是' : '否'}`,
+            value: `${resourceResult.amount} @ ${resourceResult.stage}\n${dropWeaponMsg}`,
             inline: true,
           })
         );
         const embed = new MessageEmbed({
           title: weaponName,
           color: '#0099ff',
-          description: `掉落關卡: ${stagesToString}`,
+          description:
+            lang == 'en'
+              ? `Drop Stage: ${stagesToString}`
+              : lang == 'jp'
+              ? `ドロップレベル ${stagesToString}`
+              : `掉落關卡: ${stagesToString}`,
           fields: resourcesToField,
         });
         await i.update({
@@ -94,7 +142,7 @@ module.exports = {
       const embed = new MessageEmbed({
         title: likeWeaponName,
         color: '#ff0000',
-        description: '沒有此武器',
+        description: '沒有此武器/No Such Weapon/そんな武器ない',
       });
       await interaction.editReply({
         embeds: [embed],
