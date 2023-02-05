@@ -19,8 +19,9 @@ const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellResource = sheet.getCell(i, langIndex);
     const cellValue = cellResource.value;
-    const compareCellValue = lang == 'en' ? cellValue?.toLowerCase() : cellValue;
-    console.log('cellValue',  cellValue,compareCellValue);
+    const compareCellValue =
+      lang == 'en' ? cellValue?.toLowerCase() : cellValue;
+    // console.log('cellValue', cellValue, compareCellValue);
     if (
       compareCellValue &&
       compareCellValue.includes(
@@ -30,7 +31,13 @@ const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
       const resources = cellValue.split('/');
       resources.forEach((item) => {
         const name = item.replace(/\d+/, '');
-        if (name.includes(likeResourceName) && !distinctArray.includes(name)) {
+        const compareName = lang == 'en' ? name.toLowerCase() : item;
+        if (
+          compareName.includes(
+            lang == 'en' ? likeResourceName.toLowerCase() : likeResourceName
+          ) &&
+          !distinctArray.includes(name)
+        ) {
           distinctArray.push(name);
         }
       });
@@ -46,7 +53,8 @@ const getDistinctWeaponList = (sheet, likeWeaponName, lang) => {
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellResource = sheet.getCell(i, langIndex);
     const cellValue = cellResource.value;
-    const compareCellValue = lang == 'en' ? cellValue?.toLowerCase() : cellValue;
+    const compareCellValue =
+      lang == 'en' ? cellValue?.toLowerCase() : cellValue;
     if (
       compareCellValue &&
       compareCellValue.includes(
