@@ -37,7 +37,9 @@ module.exports = {
     .addBooleanOption((option) =>
       option
         .setName('weapon_first')
-        .setDescription('選擇優先是擁有武器素材關卡')
+        .setDescription(
+          '選擇優先是擁有武器素材關卡/The priority of selection is to have the weapon material level/選択の優先順位は、武器の材料レベルを持つことです'
+        )
         .setRequired(false)
     )
     .addBooleanOption((option) =>
