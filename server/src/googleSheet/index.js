@@ -13,15 +13,14 @@ const auth = async (doc) => {
 };
 
 const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
-  // console.log('likeResourceName', likeResourceName, lang);
+  console.log('getDistinctResourcesList', likeResourceName, lang);
   const distinctArray = [];
   const langIndex = lang == 'en' ? 2 : lang == 'jp' ? 3 : 1;
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellResource = sheet.getCell(i, langIndex);
     const cellValue = cellResource.value;
-    // console.log('cellValue', cellValue);
-    const compareCellValue = lang == 'en' ? cellValue.toLowerCase() : cellValue;
-    // console.log('cellValue', i, cellValue);
+    const compareCellValue = lang == 'en' ? cellValue?.toLowerCase() : cellValue;
+    console.log('cellValue',  cellValue,compareCellValue);
     if (
       compareCellValue &&
       compareCellValue.includes(
@@ -41,12 +40,13 @@ const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
 };
 
 const getDistinctWeaponList = (sheet, likeWeaponName, lang) => {
+  console.log('getDistinctWeaponList', likeWeaponName, lang);
   const distinctArray = [];
   const langIndex = lang == 'en' ? 1 : lang == 'jp' ? 2 : 0;
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellResource = sheet.getCell(i, langIndex);
     const cellValue = cellResource.value;
-    const compareCellValue = lang == 'en' ? cellValue.toLowerCase() : cellValue;
+    const compareCellValue = lang == 'en' ? cellValue?.toLowerCase() : cellValue;
     if (
       compareCellValue &&
       compareCellValue.includes(
