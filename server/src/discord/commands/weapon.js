@@ -147,7 +147,12 @@ module.exports = {
       const embed = new MessageEmbed({
         title: likeWeaponName,
         color: '#ff0000',
-        description: '沒有此武器/No Such Weapon/そんな武器ない',
+        description:
+          lang == 'en'
+            ? 'No Such Weapon'
+            : lang == 'jp'
+            ? 'そんな武器ない'
+            : '沒有此武器',
       });
       await interaction.editReply({
         embeds: [embed],

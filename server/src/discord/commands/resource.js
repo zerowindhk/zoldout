@@ -107,7 +107,12 @@ module.exports = {
       const embed = new MessageEmbed({
         title: likeResourceName,
         color: '#ff0000',
-        description: '沒有此素材／No Such Material/材料なし',
+        description:
+          lang == 'en'
+            ? 'No Such Material'
+            : lang == 'jp'
+            ? '材料なし'
+            : '沒有此素材',
       });
       await interaction.editReply({
         embeds: [embed],

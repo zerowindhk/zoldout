@@ -19,7 +19,7 @@ const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
   for (let i = 1; i < sheet.rowCount; i++) {
     const cellResource = sheet.getCell(i, langIndex);
     const cellValue = cellResource.value;
-    console.log('cellValue', cellValue);
+    // console.log('cellValue', cellValue);
     const compareCellValue = lang == 'en' ? cellValue.toLowerCase() : cellValue;
     // console.log('cellValue', i, cellValue);
     if (
