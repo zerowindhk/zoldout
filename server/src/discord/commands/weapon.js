@@ -38,7 +38,7 @@ module.exports = {
       option
         .setName('weapon_first')
         .setDescription(
-          '選擇優先是擁有武器素材關卡/The priority of selection is to have the weapon material level/選択の優先順位は、武器の材料レベルを持つことです'
+          '武器素材關卡為先/Weapon material level first/武器素材レベル優先'
         )
         .setRequired(false)
     )
