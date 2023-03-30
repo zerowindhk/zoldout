@@ -1,5 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  EmbedBuilder,
+  ButtonStyle,
+} = require('discord.js');
 const { findLikeWeapon, findWeaponResource } = require('../../googleSheet');
 
 module.exports = {
@@ -64,13 +69,13 @@ module.exports = {
         const start = i * 5;
         const sliceWeaponNameList = weaponNameList.slice(start, start + 5);
         if (sliceWeaponNameList.length) {
-          const row = new MessageActionRow({
+          const row = new ActionRowBuilder({
             components: sliceWeaponNameList.map(
               (item) =>
-                new MessageButton({
+                new ButtonBuilder({
                   custom_id: `${item}`,
                   label: `${item}`,
-                  style: 'PRIMARY',
+                  style: ButtonStyle.Primary,
                 })
             ),
           });
@@ -78,9 +83,9 @@ module.exports = {
           rows.push(row);
         }
       }
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: likeWeaponName,
-        color: '#33FF99',
+        color: 0x33ff99,
         description:
           lang == 'en'
             ? `${weaponCount} Found.`
@@ -128,9 +133,9 @@ module.exports = {
             };
           }
         );
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
           title: weaponName,
-          color: '#0099ff',
+          color: 0x0099ff,
           description:
             lang == 'en'
               ? `Drop Stage: ${stagesToString}`
@@ -146,9 +151,9 @@ module.exports = {
       });
       collector.on('end', (collected) => {});
     } else {
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: likeWeaponName,
-        color: '#ff0000',
+        color: 0xff0000,
         description:
           lang == 'en'
             ? 'No Such Weapon'

@@ -1,5 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  EmbedBuilder,
+  ButtonStyle,
+} = require('discord.js');
 const {
   findLikeWeapon,
   findWeaponResource,
@@ -54,13 +59,13 @@ module.exports = {
         const start = i * 5;
         const sliceList = list.slice(start, start + 5);
         if (sliceList.length) {
-          const row = new MessageActionRow({
+          const row = new ActionRowBuilder({
             components: sliceList.map(
               (item) =>
-                new MessageButton({
+                new ButtonBuilder({
                   custom_id: `${item}`,
                   label: `${item}`,
-                  style: 'PRIMARY',
+                  style: ButtonStyle.Primary,
                 })
             ),
           });
@@ -68,7 +73,7 @@ module.exports = {
           rows.push(row);
         }
       }
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: '資料庫',
         color: '#4422FF',
         description:
@@ -96,9 +101,9 @@ module.exports = {
           value: stage,
           inline: true,
         }));
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
           title: name,
-          color: '#0099ff',
+          color: 0x0099ff,
           description:
             lang == 'en'
               ? `Reward: ${result.reward}\nCollection Stages below：`
@@ -114,9 +119,9 @@ module.exports = {
       });
       collector.on('end', (collected) => {});
     } else {
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: 'Bugs',
-        color: '#ff0000',
+        color: 0xff0000,
         description:
           lang == 'en' ? 'Not Found' : lang == 'jp' ? '情報なし' : '沒有此資訊',
       });

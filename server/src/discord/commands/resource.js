@@ -1,5 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  EmbedBuilder,
+  ButtonStyle,
+} = require('discord.js');
 const { findLikeResource, findResource } = require('../../googleSheet');
 
 module.exports = {
@@ -55,22 +60,22 @@ module.exports = {
         const start = i * 5;
         const sliceResourceNameList = resourceNameList.slice(start, start + 5);
         if (sliceResourceNameList.length) {
-          const row = new MessageActionRow({
+          const row = new ActionRowBuilder({
             components: sliceResourceNameList.map(
               (item) =>
-                new MessageButton({
+                new ButtonBuilder({
                   custom_id: `${item}`,
                   label: `${item}`,
-                  style: 'PRIMARY',
+                  style: ButtonStyle.Primary,
                 })
             ),
           });
           rows.push(row);
         }
       }
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: likeResourceName,
-        color: '#33FF99',
+        color: 0x33ff99,
         description:
           lang == 'en'
             ? `${resourceCount} Found.`
@@ -92,7 +97,7 @@ module.exports = {
         const { customId: resourceName } = i;
         console.log('choice', resourceName);
         const resourceResult = await findResource(resourceName, lang);
-        const embed = new MessageEmbed({
+        const embed = new EmbedBuilder({
           title: resourceName,
           color: '#5544ff',
           description: `${resourceResult.amount} @ ${resourceResult.stage}`,
@@ -104,9 +109,9 @@ module.exports = {
       });
       collector.on('end', (collected) => {});
     } else {
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: likeResourceName,
-        color: '#ff0000',
+        color: 0xff0000,
         description:
           lang == 'en'
             ? 'No Such Material'
