@@ -75,7 +75,7 @@ module.exports = {
       }
       const embed = new EmbedBuilder({
         title: '資料庫',
-        color: '#4422FF',
+        color: 0x4422ff,
         description:
           lang == 'en'
             ? 'Please select what you want to find'

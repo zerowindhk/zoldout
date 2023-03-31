@@ -99,7 +99,7 @@ module.exports = {
         const resourceResult = await findResource(resourceName, lang);
         const embed = new EmbedBuilder({
           title: resourceName,
-          color: '#5544ff',
+          color: 0x5544ff,
           description: `${resourceResult.amount} @ ${resourceResult.stage}`,
         });
         await i.update({
