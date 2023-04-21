@@ -1,0 +1,53 @@
+Key,zh-tw,zh-cn,ja-jp,en
+Card._Card_bw001v1.Name,訓練用木弓,训练用木弓,練習用の木弓,Training Wooden Bow
+Card._Card_bw001v2.Name,木弓,木弓,木弓,Wooden Bow
+Card._Card_bw001v3.Name,楓木弓,枫木弓,楓の弓,Maple Bow
+Card._Card_bw001v4.Name,精靈之森,精灵之森,宵夜ノ森,Elf’s Bow
+Card._Card_bw002v1.Name,短弓,短弓,短弓,Shortbow
+Card._Card_bw002v2.Name,遊擊短弓,游击短弓,遊撃の短弓,Guerrilla Shortbow
+Card._Card_bw002v3.Name,狼牙弓,狼牙弓,狼牙の弓,Fang Bow
+Card._Card_bw003v1.Name,大弓,大弓,大弓,Large Bow
+Card._Card_bw003v2.Name,阿波羅,阿波罗,アポロ,Apollo
+Card._Card_bw006v1.Name,毒弓,毒弓,毒の弓,Poison Bow
+Card._Card_bw006v2.Name,蛇毒弓,蛇毒弓,毒蛇の弓,Snake Venom Bow
+Card._Card_bw006v3.Name,眼鏡蛇弓,眼镜蛇弓,コブラの弓,Cobra Bow
+Card._Card_bw006v4.Name,劇毒骸蝶,剧毒骸蝶,ポイズンデスフライ,Virulent Butterfly
+Card._Card_bw007v1.Name,繩弓,绳弓,縄弓,Rope Bow
+Card._Card_bw007v2.Name,樹藤弓,树藤弓,蔦の弓,Vine Bow
+Card._Card_bw007v3.Name,天之鎖鏈,天之锁链,ヘブンチェーン,Unbreakable Chain
+Card._Card_bw008v1.Name,炸彈弓,炸弹弓,爆弾弓,Bomb Bow
+Card._Card_bw008v2.Name,重型炸彈弓,重型炸弹弓,重型爆弾弓,Heavy Bomb Bow
+Card._Card_bw008v3.Name,實驗炸彈彈射器?!,实验炸弹弹射器?!,実験爆弾弾射器？！,Bomb Launcher
+Card._Card_bw009v1.Name,射不準的玩具弓,射不准的玩具弓,当たらないおもちゃの弓,Rotating Toy Bow
+Card._Card_bw010v1.Name,訓練用陷阱弓,训练用陷阱弓,練習用のトラップボウ,Training Trap Launcher
+Card._Card_bw010v2.Name,彈射陷阱弓,弹射陷阱弓,弾射トラップボウ,Trap Launcher
+Card._Card_bw010v3.Name,彈射陷阱弓 MK2,弹射陷阱弓 2号,弾射トラップボウ MK2,Trap Launcher MK2
+Card._Card_bw010v4.Name,反向彈射陷阱弓,反向弹射陷阱弓,逆弾射トラップボウ,Backward Trap Launcher
+Card._Card_bw010v5.Name,反向彈射陷阱弓 MK2,反向弹射陷阱弓 2号,逆弾射トラップボウ MK2,Backward Trap Launcher 
+Card._Card_bw011v1.Name,誘毒弓,诱毒弓,誘毒の弓,Toxicity Aggravator I
+Card._Card_bw011v2.Name,引毒蜂素,引毒蜂素,スズメバチの毒,Toxicity Aggravator II
+Card._Card_bw011v3.Name,毒林障氣,毒林障气,毒森の瘴気,Venomous Gale
+Card._Card_bw013v1.Name,世界樹樹苗,世界树树苗,世界樹の苗,Yggdrasil Bow
+Card._Card_bw014v1.Name,連射弓,连射弓,ラピッドショット,Triple-row Bow
+Card._Card_bw014v2.Name,狂暴追獵,狂暴追猎,バーサークハンター,Raging Hunt
+Card._Card_bw015v4.Name,百毒的石弓,百毒的石弓,百毒の石弓,Hypertoxic Bow
+Card._Card_bw016v1.Name,祭祀獵弓,祭祀猎弓,狩猟祭祀の弓,Ritual Hunting
+Card._Card_bw016v2.Name,儀式長弓,仪式长弓,儀式用長弓,Ritual Longbow
+Card._Card_bw017v1.Name,騷靈之弓,骚灵之弓,ガイストの弓,Bow of Restless Souls
+Unit._WeaponUnit_bw010v1.Name,訓練用陷阱,训练用陷阱,訓練用トラップ,Trap for Training
+BuffDesc._Card_bw010v1_Triggered.Name,陷阱,陷阱,トラップ,Trap
+Unit._WeaponUnit_bw010v2.Name,彈射陷阱,弹射陷阱,弾射トラップ,Pop-up Trap
+BuffDesc._Card_bw010v2_Triggered.Name,彈射陷阱,弹射陷阱,弾射トラップ,Pop-up Trap
+Unit._WeaponUnit_bw010v3.Name,彈射陷阱MK2,弹射陷阱2号,弾射トラップMK2,Pop-up Trap MK2
+BuffDesc._Card_bw010v3_Triggered.Name,彈射陷阱MK2,弹射陷阱2号,弾射トラップMK2,Pop-up Trap MK2
+Unit._WeaponUnit_bw010v4.Name,彈射陷阱,弹射陷阱,弾射トラップ,Pop-up Trap
+BuffDesc._Card_bw010v4_Triggered.Name,反向彈射陷阱,反向弹射陷阱,逆弾射トラップ,Reverse Pop-up Trap
+Unit._WeaponUnit_bw010v5.Name,反向彈射陷阱MK2,反向弹射陷阱2号,逆弾射トラップMK2,Reverse Pop-up Trap MK2
+BuffDesc._Card_bw010v5_Triggered.Name,反向彈射陷阱MK2,反向弹射陷阱2号,逆弾射トラップMK2,Reverse Pop-up 
+Unit._WeaponUnit_bw013v1.Name,世界樹樹苗,世界树树苗,世界樹の苗,Yggdrasil Seed
+Card._Card_bw018v1.Name,元素獵者,元素猎人,エレメンツハンター,Element Hunter
+Card._Card_bw022v1.Name,驚嚇小幽靈,惊吓小幽灵,ドッキリ幽霊ちゃん,Frightened Ghost
+Card._Card_bw020v1.Name,哨兵獵弓,哨兵猎弓,哨兵のハントボウ,Sentry Bow
+Unit._WeaponUnit_bw020v1.Name,哨兵陷阱,哨兵陷阱,哨兵トラップ,Sentry Trap
+BuffDesc._Card_bw020v1_Triggered.Name,哨兵陷阱,哨兵陷阱,哨兵トラップ,Sentry Trap
+Card._Card_bw021v1.Name,狂鯊獵弓,,クレイジーシャークボウ,Shark Bow
