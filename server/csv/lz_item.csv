@@ -1,4 +1,32 @@
 ﻿Key,zh-tw,zh-cn,ja-jp,en
+鐵塊,鐵塊,,鉄の塊,Iron Bar
+銅塊,銅塊,,銅の塊,Bronze Bar
+銀塊,銀塊,,銀の塊,Silver Bar
+金塊,金塊,,金の塊,Gold Bar
+岩楓樹木材,岩楓樹木材,,岩楓樹の木材,Rock Maple Wood
+精靈月桂樹木材,精靈月桂樹木材,,エルフ月桂樹の木材,Elven Laurel Wood
+紫鐵杉木材,紫鐵杉木材,,紫栂の木材,Purple Hemlock Wood
+迪森拜雪樺木木材,迪森拜雪樺木木材,,デュセンバイ雪樺の木材,Disenby Snow Birch Wood
+七葉莎紙,七葉莎紙,,七葉パピルス,Horse Chestnut Paper
+晨砂羊皮紙,晨砂羊皮紙,,辰砂羊皮紙,Dawn Sand Parchment
+曼陀羅莎紙,曼陀羅莎紙,,曼荼羅パピルス,Datura Paper
+米斯里魔紋紙,米斯里魔紋紙,,ヴィッセン魔紋紙,Misery Magic Wove Paper
+小型火焰結晶,小型火焰結晶,,小型火炎の結晶,Small Fire Crystal
+小型自然結晶,小型自然結晶,,小型自然の結晶,Small Natural Crystal
+小型雷電結晶,小型雷電結晶,,小型雷電の結晶,Small Lightning Crystal
+小型冰雪結晶,小型冰雪結晶,,小型氷雪の結晶,Small Ice Crystal
+中型火焰結晶,中型火焰結晶,,中型火炎の結晶,Intermediate Fire Crystal
+中型自然結晶,中型自然結晶,,中型自然の結晶,Intermediate Natural Crystal
+中型雷電結晶,中型雷電結晶,,中型雷電の結晶,Intermediate Lightning Crystal
+中型冰雪結晶,中型冰雪結晶,,中型氷雪の結晶,Intermediate Ice Crystal
+大型火焰結晶,大型火焰結晶,,大型火炎の結晶,Large Fire Crystal
+大型自然結晶,大型自然結晶,,大型自然の結晶,Large Natural Crystal
+大型雷電結晶,大型雷電結晶,,大型雷電の結晶,Large Lightning Crystal
+大型冰雪結晶,大型冰雪結晶,,大型氷雪の結晶,Large Ice Crystal
+巨型火焰結晶,巨型火焰結晶,,超大型火炎の結晶,Major Fire Crystal
+巨型自然結晶,巨型自然結晶,,超大型自然の結晶,Major Natural Crystal
+巨型雷電結晶,巨型雷電結晶,,超大型雷電の結晶,Major Lightning Crystal
+巨型冰雪結晶,巨型冰雪結晶,,超大型氷雪の結晶,Major Ice Crystal
 Item._ItmDp_c04A.Name,破岩鳥喙,破岩鸟喙,鋭い嘴,Rock Breaking Beak
 Item._ItmDp_c03X1B.Name,雲王的大拳頭,云王的大拳头,雲王の拳骨,Big Fist of the Cloud King
 Item._ItmDp_c03X1A.Name,雲王之拳,云王之拳,雲王の拳,Fist of the Cloud King
