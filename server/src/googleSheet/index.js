@@ -96,8 +96,11 @@ const loopExactFind = (
       const resources = cellValue.split('/');
       const exactRe = new RegExp(`^[0-9]+${resourceName}$`);
       const element = resources.find((item) => {
-        // console.log('element:', item, 'result:', exactRe.test(item));
-        return exactRe.test(item);
+        if (item.includes(resourceName)) {
+          // console.log('element:', item, 'result:', exactRe.test(item.trim()));
+          return exactRe.test(item.trim());
+        }
+        return false;
       });
       if (element) {
         const re2 = /\d+/;
