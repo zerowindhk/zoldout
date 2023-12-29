@@ -12,6 +12,26 @@ const auth = async (doc) => {
   console.log('doc is ready', doc.title);
 };
 
+const stageMap = [
+  { name: 'E', zh: '普通', en: 'Easy', jp: 'ノーマル' },
+  { name: 'H', zh: '困難', en: 'Hard', jp: 'ハード' },
+  { name: 'N', zh: '惡夢', en: 'Nightmare', jp: 'ナイトメア' },
+  { name: 'Pre', zh: '序', en: 'Prelude', jp: '序' },
+  { name: 'End', zh: '結', en: 'Ending', jp: '結' },
+];
+
+const replaceStageName = (stageName, lang) => {
+  console.log(stageName, lang);
+  const stageInfo = stageName.split('-');
+  const replacedStageInfo = stageInfo.map((item) => {
+    const stage = stageMap.find((stage) => stage.name === item);
+    return stage ? stage[lang] : item;
+  });
+  const result = replacedStageInfo.join('-');
+  console.log(result);
+  return result;
+};
+
 const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
   console.log('getDistinctResourcesList', likeResourceName, lang);
   const distinctArray = [];
@@ -30,7 +50,7 @@ const getDistinctResourcesList = (sheet, likeResourceName, lang) => {
     ) {
       const resources = cellValue.split('/');
       resources.forEach((item) => {
-        const name = item.replace(/\d+/, '');
+        const name = item.replace(/\d+\.?\d*/, '');
         const compareName = lang == 'en' ? name.toLowerCase() : item;
         if (
           compareName.includes(
@@ -74,7 +94,7 @@ const loopExactFind = (
   weaponName = null,
   weaponFirst = false
 ) => {
-  // console.log(resourceName);
+  console.log('loopExactFind', resourceName);
   let rowNo = 0;
   let amount = 0;
   let hasWeaponRowNo = 0;
@@ -94,19 +114,17 @@ const loopExactFind = (
       // console.log(i, cellValue);
       // const re = /\s*(?:;\/|$)\s*/;
       const resources = cellValue.split('/');
-      const exactRe = new RegExp(`^[0-9]+${resourceName}$`);
+      const exactRe = new RegExp(`^\\d+\\.?\\d*${resourceName}$`, 'g');
       const element = resources.find((item) => {
-        if (item.includes(resourceName)) {
-          // console.log('element:', item, 'result:', exactRe.test(item.trim()));
-          return exactRe.test(item.trim());
-        }
-        return false;
+        // console.log('element:', item, 'result:', exactRe.test(item.trim()));
+        return item.includes(resourceName) && exactRe.test(item.trim()); //only can test once, comment console
       });
+      console.log(element);
       if (element) {
-        const re2 = /\d+/;
+        const re2 = /\d+\.?\d*/;
         const number = element.match(re2);
         if (number) {
-          const count = parseInt(number[0]);
+          const count = parseFloat(number[0]);
           if (
             weaponName &&
             sheet.getCell(i, weaponIndex).value === weaponName &&
@@ -132,7 +150,7 @@ const loopExactFind = (
       : rowNo;
   amount =
     weaponName && weaponFirst && hasWeaponAmount > 0 ? hasWeaponAmount : amount;
-  const stage = sheet.getCell(rowNo, 0).value;
+  const stage = replaceStageName(sheet.getCell(rowNo, 0).value, lang);
   const weaponGetFromStage = sheet.getCell(rowNo, weaponIndex).value;
   // console.log(
   //   'Loop Exact Found',
@@ -162,7 +180,7 @@ const findWeaponStages = (sheet, weaponName, lang) => {
       weaponNameList.forEach((element) => {
         if (element === weaponName) {
           const stageCell = sheet.getCell(i, 0);
-          result.push(stageCell.value);
+          result.push(replaceStageName(stageCell.value), lang);
         }
       });
     }
@@ -230,7 +248,7 @@ const findWeaponResource = async (weaponName, lang, weaponFirst) => {
       weaponName,
       weaponFirst
     );
-    element.stage = item.stage;
+    element.stage = replaceStageName(item.stage, lang);
     element.amount = item.amount;
     element.findWithWeapon = item.findWithWeapon;
   });
@@ -292,7 +310,7 @@ const getInformation = async (informationName, lang) => {
     const cellInfo = sheet.getCell(i, langIndex);
     const cellValue = cellInfo.value;
     if (cellValue === informationName) {
-      const stage = sheet.getCell(i, stageIndex).value;
+      const stage = replaceStageName(sheet.getCell(i, stageIndex).value, lang);
       stages.push(stage);
       reward = sheet.getCell(i, rewardIndex).value || '';
     }
